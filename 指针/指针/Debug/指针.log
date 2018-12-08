@@ -1,0 +1,5 @@
+﻿  源.c
+e:\c\指针\指针\源.c(5): warning C4477: “printf”: 格式字符串“%#X”需要类型“unsigned int”的参数，但可变参数 1 拥有了类型“int *”
+e:\c\指针\指针\源.c(5): warning C4477: “printf”: 格式字符串“%#X”需要类型“unsigned int”的参数，但可变参数 2 拥有了类型“char *”
+e:\c\指针\指针\源.c(12): warning C4013: “system”未定义；假设外部返回 int
+  指针.vcxproj -> E:\C\指针\Debug\指针.exe
