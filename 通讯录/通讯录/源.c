@@ -15,7 +15,7 @@ static void menu() {
 }
 
 int main(){
-	
+
 	int input = 0;
 	struct A message[1000];
 	int all = 0;				//用来存储共有多少联系人
@@ -33,10 +33,10 @@ int main(){
 			AddLinkman(message,&all);     //添加联系人
 			break;
 		case 2:
-			DeletLinkman(message, &all);
+			DeleLinkman(message, &all);
 			break;
 		default:
-			printf("你输入的数字不在菜单栏的范围内！");
+			printf("选择错误\n");
 		}
 	} while (input);
 	

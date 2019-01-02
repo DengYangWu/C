@@ -1,4 +1,6 @@
 #include "address_list.h"
+
+void DeleLinkman(struct A *str, int *a);
 void InitLinkman(struct A *str, int *a) {
 	int i = 0;
 	struct A *p = str;
@@ -7,35 +9,53 @@ void InitLinkman(struct A *str, int *a) {
 		(p + i)->flag = 0;
 	}
 }
-void AddLinkman(struct A *str, int *a) {
+void AddLinkman(struct A *str, int *a)
+{
+	FILE* fg = fopen("E:\\address.txt","w");
 	int i = 0;
 	struct A *p = str;
-	if ((*a) >= 1000) {
+	//printf("%s\n", p->name);
+
+
+	if ((*a) >= 1000)
+	{
 		printf("对不起，通讯录已满，不能再存储联系人\n");
 		return;
 	}
-	for (i = 0; i < 1000; i++) {
-		if ((p + i)->flag == 0) { //flag = 0 表示该联系人为空，可以存新信息
+
+	for (i = 0; i < 1000; i++)
+	{
+
+		if ((p + i)->flag == 0)//flag =0表示该联系人为空，可以存新的信息
+		{
 			printf("请输入联系人姓名>\n");
 			scanf("%s", (p + i)->name);
-			printf("请输入联系人的性别>\n");
+			//printf("%s", (p+i)->name);
+			printf("请输入联系人性别>\n");
 			scanf("%s", (p + i)->sex);
 			printf("请输入联系人年龄>\n");
 			scanf("%d", &((p + i)->age));
 			printf("请输入联系人电话号码>\n");
+			char num = (p + i)->number;
 			scanf("%s", (p + i)->number);
 			printf("请输入联系人地址>\n");
 			scanf("%s", (p + i)->address);
-			(p + i)->flag = 0;	//表示结构体已经存储了联系人  
-			(*a)++;		//总联系人加一  变量a用来记录联系人的总数
-			break;
 
+			(p + i)->flag = 1;//表示结构体已经存储联系人
+			(*a)++;//总联系人加一
+			printf("%s",num);
+			fprintf(fg,"%s\n",num);
+			fclose(fg);
+
+			main();
 		}
 	}
-
 }
 
-static void	menu(int num) {
+
+
+static void	menu1(int num) {
+
 	if (num == 1) {
 		printf("请输入要删除联系人的信息(至少为姓名,性别,年龄,电话,住址中的一项)\n");
 	}
@@ -52,16 +72,21 @@ static void	menu(int num) {
 }
 
 void DeleLinkman(struct A *str,int *a) {
+	*a = 1;
+	printf("%d\n",*a);
 	int input = 0;
 	int i = 0;
 	struct A *p = str;
-	
+
 	if (*a == 0) {
 		printf("对不起,通讯录已空\n");
-		return;
+	}
+	else
+	{
+		menu1(1);
 	}
 	do {
-		menu(1);
+
 		scanf("%d",&input);
 
 		switch (input) {
@@ -82,14 +107,14 @@ void DeleLinkman(struct A *str,int *a) {
 				}
 
 			}
-			if (i>1000) {
+			if (i<=0) {
 				printf("该联系人不存在！");
 			}
 			else {
 				printf("已删除！");
 			}
 		}
-		break:
+		break;
 		case 2:
 		{
 			
