@@ -1,6 +1,18 @@
 #include "address_list.h"
 
+
+FILE *const fg_write_txt();
+FILE *const fg_txt_look();
 void DeleLinkman(struct A *str, int *a);
+
+FILE *const fg_write_txt() {
+	FILE* fg = fopen("E:\\address.txt","a");
+
+}
+FILE *const fg_txt_look() {
+	FILE* fg = fopen("E:\\address.txt", "r");
+
+}
 void InitLinkman(struct A *str, int *a) {
 	int i = 0;
 	struct A *p = str;
@@ -11,7 +23,7 @@ void InitLinkman(struct A *str, int *a) {
 }
 void AddLinkman(struct A *str, int *a)
 {
-	FILE* fg = fopen("E:\\address.txt","w");
+
 	int i = 0;
 	struct A *p = str;
 	//printf("%s\n", p->name);
@@ -36,17 +48,20 @@ void AddLinkman(struct A *str, int *a)
 			printf("请输入联系人年龄>\n");
 			scanf("%d", &((p + i)->age));
 			printf("请输入联系人电话号码>\n");
-			char num = (p + i)->number;
 			scanf("%s", (p + i)->number);
 			printf("请输入联系人地址>\n");
 			scanf("%s", (p + i)->address);
 
 			(p + i)->flag = 1;//表示结构体已经存储联系人
 			(*a)++;//总联系人加一
-			printf("%s",num);
-			fprintf(fg,"%s\n",num);
-			fclose(fg);
+			//strcpy((p+1)->name,'\n');
 
+			FILE* fg= fg_write_txt();  //写入联系人详细到文件里
+			fprintf(fg,"%s\t%s\t%d\t%s\t%s\n",(p + i)->name,(p + i)->sex,(p + i)->age,(p + i)->number,(p + i)->address);
+			fclose(fg);
+			FILE* fg_ = fg_txt_look(); //查看联系人详情
+			//fscanf(fg_,"%s\n", &(p + i)->age);
+			//printf("%s", &(p + i)->age);
 			main();
 		}
 	}
@@ -72,7 +87,7 @@ static void	menu1(int num) {
 }
 
 void DeleLinkman(struct A *str,int *a) {
-	*a = 1;
+
 	printf("%d\n",*a);
 	int input = 0;
 	int i = 0;

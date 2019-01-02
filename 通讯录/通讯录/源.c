@@ -25,7 +25,7 @@ int main(){
 	printf("请输入你要实现的功能：");
 	scanf("%d",&input);
 
-	do {
+	//do {
 		switch (input) {
 		case 0:
 			break;
@@ -37,8 +37,10 @@ int main(){
 			break;
 		default:
 			printf("选择错误\n");
+			main();
+			
 		}
-	} while (input);
+	//} while (1);
 	
 	system("pause");
 	return 0;
