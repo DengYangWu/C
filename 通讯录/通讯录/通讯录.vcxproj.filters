@@ -15,12 +15,15 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="源.c">
+    <ClCompile Include="..\..\C\通讯录\通讯录\源.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\C\通讯录\通讯录\address_list.c">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="address_list.h">
+    <ClInclude Include="..\..\C\通讯录\通讯录\address_list.h">
       <Filter>源文件</Filter>
     </ClInclude>
   </ItemGroup>
