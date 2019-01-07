@@ -1,0 +1,11 @@
+﻿  address_list.c
+e:\c\c\通讯录\通讯录\address_list.c(50): warning C4477: “scanf”: 格式字符串“%s”需要类型“char *”的参数，但可变参数 1 拥有了类型“int”
+e:\c\c\通讯录\通讯录\address_list.c(65): warning C4477: “printf”: 格式字符串“%s”需要类型“char *”的参数，但可变参数 1 拥有了类型“int”
+e:\c\c\通讯录\通讯录\address_list.c(65): warning C4313: “printf”: 格式字符串中的“%s”与“int”类型的参数 1 冲突
+e:\c\c\通讯录\通讯录\address_list.c(69): warning C4013: “main”未定义；假设外部返回 int
+  源.c
+e:\c\c\通讯录\通讯录\源.c(36): warning C4013: “DeleLinkman”未定义；假设外部返回 int
+  正在生成代码...
+e:\c\c\通讯录\通讯录\address_list.c(11): warning C4716: “fg_write_txt”: 必须返回一个值
+e:\c\c\通讯录\通讯录\address_list.c(15): warning C4716: “fg_txt_look”: 必须返回一个值
+  通讯录.vcxproj -> E:\C\C\通讯录\x64\Debug\通讯录.exe
