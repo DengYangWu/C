@@ -1,8 +1,0 @@
-﻿  address_list.c
-e:\c语言\c\通讯录\通讯录\address_list.c(65): warning C4013: “main”未定义；假设外部返回 int
-  源.c
-e:\c语言\c\通讯录\通讯录\源.c(36): warning C4013: “DeleLinkman”未定义；假设外部返回 int
-  正在生成代码...
-e:\c语言\c\通讯录\通讯录\address_list.c(15): warning C4716: “fg_txt_look”: 必须返回一个值
-e:\c语言\c\通讯录\通讯录\address_list.c(11): warning C4716: “fg_write_txt”: 必须返回一个值
-  通讯录.vcxproj -> E:\C语言\通讯录\Debug\通讯录.exe
