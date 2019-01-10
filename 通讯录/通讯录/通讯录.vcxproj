@@ -115,6 +115,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="address.c" />
+    <ClCompile Include="address.h" />
     <ClCompile Include="address_list.c" />
     <ClCompile Include="源.c" />
   </ItemGroup>
