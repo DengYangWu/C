@@ -1,14 +1,29 @@
 #include<iostream>
-
+#include <string.h>
 #include "unistd.h"
-
-#include <Windows.h>
+#include <windows.h>
 #include <stdio.h>
 #include <conio.h>  //按键
 #include<stdlib.h> //free()函数
 #include <graphics.h>//图形初始化头文件
 #include <tchar.h>
-#include<stdlib.h>
+
+enum Color
+{
+	black, blue, green, lakeBlue, Red, purple, yellow, white, gray,
+	lightBlue, lightGreen, lightSimpleGreen, lightRed, lightPurple, lightYellow, brightWhite
+};
+void setColor(unsigned short backColor = 0, unsigned short textColor = 7) {
+	char command[9] = "color 07";		//默认颜色	
+	command[6] = '0' + backColor;		//将backColor变量改为字符型 
+	command[7] = '0' + textColor;		//将textColor变量改为字符型 
+	system(command);				//调用系统函数 
+}
+void gotoxy(int x, int y) {
+	COORD pos = { x,y };
+	HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);// 获取标准输出设备句柄
+	SetConsoleCursorPosition(hOut, pos);//两个参数分别是指定哪个窗体，具体位置
+}
 
 //预处理模块
 #define Move printf("\n\n\n\n\n\n")
@@ -26,11 +41,12 @@
 #define Pageup 73
 #define Pagedn 81
 #define ALL 100          //文件个数
+#define Backspace 8
 //#pragma comment(lib,"eaxyx.lib")
 //#pragma comment(lib,"eaxyx6.lib")
 //#pragma comment(lib,"eaxyxw.lib")
 //#pragma comment(lib,"eaxyxw6.lib")
-const char red[] = { 'A','D','E','S','O','H' };  //热键显示
+const char *red[] = { "A","D","E","S","O","H" };  //热键显示
 const char *f[] = { "Add","Delete","Edit","Search","Sort","Help" };
 const char *Hel[] = {
 	"ESC:QUIT",
@@ -55,6 +71,30 @@ typedef struct Tel {
 int sum[1], pg = 1,page;
 void *buffer, *buff;
 Message msg[ALL], msgtem[ALL];
+
+void Draw() {
+	int i,l;
+	setColor(white, purple);
+	system("cls");
+	for (i = 0; i < 6; i++) {
+		//x = wherex();
+		_cprintf("\t%s", f[i]);    //打印输出菜单数组
+		l = strlen(f[i]);       //计算字符数组长度
+		//gotoxy(x, y);
+		if (i==4) {
+		//	//gotoxy(x+1,y);
+			_cprintf("%s",red[i]);
+		}
+		else {
+		//	_cprintf("%s",red[i]);
+		//	//x = x + 1 + 8;
+			//gotoxy(x,y);
+		}
+		
+	}
+	return;
+
+}
 int ADD() {
 	printf("ADD");
 	return 0;
@@ -73,6 +113,12 @@ int SORT() {
 }
 int EDIT() {
 	printf("edit");
+	char name[20];
+	Message t[1];
+	FILE* fp = fopen("E:\\C\\C\\TBS.dat","wb");
+	int i, find = 0,num = 0;
+	//gotoxy(1,23);
+
 	return 0;
 }
 int HELP() {
@@ -161,6 +207,7 @@ int grapherrormsg(int gcode) {
 	return 0;
 }
 void interfaceg() {
+	//Draw();
 	int driver= DETECT, gmode=0, gcode, grOk=0;
 	int i;
 	//system("cls");
@@ -239,23 +286,67 @@ void Pwd() {
 	const char *passwrd=0, *Right = "12345";
 	char temp[9];
 	int i = 0;
+	while (1) {
 	Move;                 //换行
 	printf("------------------------Think you for usring this system!\n\n");
 	printf("------------------------Input a password(Not show):");   //输出字符串，获取口令号
-	char ch[30];
-	system("cls");
+	char ch;
+	//system("cls");
 	
-	int len;
-	
-	while ((ch[i] = _getch()) != EOF) {
-			putchar('*');
-			i++;
+	char len[100];
+
+		while ((ch = _getch()) != EOF) {
+			if (ch != '\b') {
+
+				if (ch != '\r')
+				{
+					if (i <= 8) {
+						len[i++] = ch;
+						putchar('*');
+					}
+
+				}
+				else {
+					
+					break;
+
+				}
+			}
+			else {
+				if (i > 0) {
+					i--;
+					printf("\b \b");
+				}
+			}
+
+		}
+		//printf("%d",i);
+		//printf("%s",len);
+		if (i>3) {
+			len[i] = '\0';
+			if (strcmp(len, Right) != 0) {
+				printf("\n----------------------------Dont't worry!Input again.");
+			}
+			else {
+				printf("\n----------------------------Succeed!");
+				Draw();
+				break;
+			}
+		}
+		else {
+
+				printf("\n----------------------------Sorry!You have enter three times password!\n");
+				printf("\n----------------------------Press any key!");
+				_getch();
+				Sleep(1000);
+				exit(0);
+		}
 	}
-	printf("%d",i);
-	
+
 	return;
 }
 int main() {
+	
 	interfaceg();
 	Pwd();
 	key();
